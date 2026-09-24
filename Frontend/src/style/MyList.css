@@ -1,0 +1,37 @@
+.mylist-links {
+    display: flex;
+    gap: 40px;
+    margin: 20px 0 35px;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #0f172a;
+    
+}
+
+.mylist-links span{
+    position:relative;
+    cursor:pointer;
+    color:#9ca3af;
+    transition:color .3s;
+}
+
+.mylist-links span:hover{
+    color:#fff;
+}
+
+.active-link{
+    color:#38bdf8 !important;
+}
+
+.active-link::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+
+    width:100%;
+    height:3px;
+
+    background:#38bdf8;
+    border-radius:20px;
+}

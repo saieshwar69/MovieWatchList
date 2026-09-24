@@ -1,0 +1,32 @@
+.footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  background: #0b132b;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.tmdb-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tmdb-badge img {
+  height: 28px;
+  object-fit: contain;
+}
+
+.tmdb-badge span {
+  font-size: 13px;
+  color: #9ca3af;
+}
+

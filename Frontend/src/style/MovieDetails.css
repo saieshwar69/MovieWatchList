@@ -1,0 +1,458 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+
+/* ============================================================
+   BASE
+   ============================================================ */
+.movie-page {
+    min-height: 100vh;
+    background: #060c18;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.movie-hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center top;
+}
+
+/* Two-layer gradient — directional wipe left + upward fade */
+.movie-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to right,  #060c18 32%, rgba(6, 12, 24, 0.5) 70%, rgba(6, 12, 24, 0.15) 100%),
+        linear-gradient(to top,    #060c18 0%,  rgba(6, 12, 24, 0.85) 28%, transparent 58%);
+    pointer-events: none;
+}
+
+/* Content sits above gradient overlay */
+.movie-hero > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Inner flex row */
+.movie-hero-inner {
+    display: flex;
+    align-items: flex-end;
+    gap: 48px;
+    padding: 0 6% 68px;
+    width: 100%;
+}
+
+/* ============================================================
+   POSTER
+   ============================================================ */
+.movie-left {
+    flex-shrink: 0;
+    position: relative;
+    width: 240px;
+}
+
+/* Soft cyan/violet glow behind poster */
+.movie-left::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(0, 180, 255, 0.4), rgba(120, 0, 255, 0.2));
+    filter: blur(14px);
+    z-index: 0;
+}
+
+.movie-left img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.movie-left img:hover {
+    transform: scale(1.025);
+}
+
+/* Rating badge pinned to top-right corner of poster */
+.movie-rating-badge {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    z-index: 3;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #060c18;
+    border: 2px solid rgba(0, 200, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.22);
+}
+
+.movie-rating-badge .badge-num {
+    font-size: 14px;
+    font-weight: 700;
+    color: #00c8ff;
+    line-height: 1;
+}
+
+.movie-rating-badge .badge-lbl {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.38);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   HERO TEXT
+   ============================================================ */
+.movie-right {
+    flex: 1;
+    max-width: 680px;
+}
+
+/* Eyebrow row: tag + year */
+.movie-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.movie-eyebrow-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #00c8ff;
+    padding: 4px 10px;
+    border: 1px solid rgba(0, 200, 255, 0.3);
+    border-radius: 4px;
+}
+
+.movie-eyebrow-year {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.08em;
+}
+
+/* Title — compressed display face */
+.movie-right h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    color: #ffffff;
+}
+
+/* Metadata row: rating · date · runtime */
+.movie-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.movie-meta-item {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    padding: 0 14px;
+    border-right: 1px solid rgba(255, 255, 255, 0.14);
+    line-height: 1;
+}
+
+.movie-meta-item:first-child { padding-left: 0; }
+.movie-meta-item:last-child  { border-right: none; }
+.movie-meta-item.is-rating   { color: #f5c842; }
+
+/* Genre pills */
+.movie-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 26px;
+}
+
+.movie-genres span {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+    padding: 5px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    letter-spacing: 0.02em;
+}
+
+/* Overview */
+.movie-right .movie-overview {
+    font-size: 15px;
+    line-height: 1.78;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 560px;
+    margin-bottom: 36px;
+}
+
+/* Actions */
+.movie-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.btn-add-list {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #060c18;
+    background: #00c8ff;
+    border: none;
+    padding: 13px 26px;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.btn-add-list:hover {
+    background: #33d4ff;
+    transform: translateY(-1px);
+}
+
+/* ============================================================
+   BELOW-FOLD SECTIONS
+   ============================================================ */
+.movie-sections {
+    padding: 60px 6% 80px;
+}
+
+/* Section heading with extending hairline */
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+}
+
+.section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+/* ============================================================
+   STREAMING PROVIDERS
+   ============================================================ */
+.streaming-section { margin-bottom: 60px; }
+
+.provider-list {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.provider-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    cursor: default;
+}
+
+.provider-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 200, 255, 0.28);
+    transform: translateY(-2px);
+}
+
+.provider-card img {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.provider-card p {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+}
+
+.provider-none {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.3);
+    font-style: italic;
+    padding: 6px 0;
+}
+
+/* ============================================================
+   TRAILER
+   ============================================================ */
+.trailer-section { margin-bottom: 60px; }
+
+.trailer-player {
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: #0d1525;
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+}
+
+.trailer-player iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ============================================================
+   CAST GRID  (add this section to MovieDetails.jsx if desired)
+   ============================================================ */
+.cast-section { margin-bottom: 60px; }
+
+.cast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 16px;
+}
+
+.cast-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.cast-card:hover {
+    border-color: rgba(0, 200, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.cast-card img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+    background: #1a2540;
+}
+
+.cast-info { padding: 10px 10px 12px; }
+
+.cast-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.3;
+    margin-bottom: 2px;
+}
+
+.cast-character {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+    line-height: 1.3;
+}
+.movie-loading{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:#07142b;
+    color:white;
+    gap:20px;
+}
+
+.loader{
+    width:60px;
+    height:60px;
+    border:5px solid rgba(255,255,255,.2);
+    border-top:5px solid #38bdf8;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.back-btn{
+    position: fixed;
+    top: 10px;
+    right: 32px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    background: rgba(18,28,48,.75);
+    backdrop-filter: blur(10px);
+
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+
+    font-size: 1rem;
+    font-weight: 900;
+
+    cursor: pointer;
+    background: #98a9af1a;
+
+    transition: .25s ease;
+
+    z-index: 1000;
+}
+
+.back-btn:hover{
+    background-color: #f62989;
+    color:#07142b;
+    transform: translateY(-2px);
+    box-shadow:0 10px 25px rgba(34,184,240,.35);
+}
+
+.back-btn:active{
+    transform:scale(.96);
+}
